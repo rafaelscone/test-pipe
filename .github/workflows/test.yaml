@@ -1,0 +1,28 @@
+name: Password Sharing Workflow
+
+on: [push]
+
+jobs:
+  set_password:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Password
+        run: echo "PASSWORD=your_password" >> $GITHUB_ENV
+      - name: Create Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: password-artifact
+          path: .env
+
+  use_password:
+    runs-on: ubuntu-latest
+    needs: set_password
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: password-artifact
+      - name: Read Password
+        run: |
+          PASSWORD=$(cat password-artifact/.env | grep PASSWORD | cut -d'=' -f2)
+          echo "Password is: $PASSWORD"
