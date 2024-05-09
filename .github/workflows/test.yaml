@@ -9,7 +9,7 @@ jobs:
       - name: Set Password
         run: echo "PASSWORD=your_password" >> $GITHUB_ENV
       - name: Create Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: password-artifact
           path: .env
@@ -21,7 +21,7 @@ jobs:
       contents: read
     steps:
       - name: Download Artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: password-artifact
       - name: Read Password
