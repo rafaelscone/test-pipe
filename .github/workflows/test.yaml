@@ -17,6 +17,8 @@ jobs:
   use_password:
     runs-on: ubuntu-latest
     needs: set_password
+    permissions:
+      contents: read
     steps:
       - name: Download Artifact
         uses: actions/download-artifact@v2
