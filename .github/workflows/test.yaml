@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Set Password
         run: echo "PASSWORD=your_password" >> $GITHUB_ENV
+      - name: Export vars
+        run: echo "PASSWORD=$PASSWORD" >> .env
       - name: Create Artifact
         uses: actions/upload-artifact@v4
         with:
