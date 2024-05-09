@@ -28,5 +28,6 @@ jobs:
           name: password-artifact
       - name: Read Password
         run: |
-          PASSWORD=$(cat password-artifact/.env | grep PASSWORD | cut -d'=' -f2)
+          #PASSWORD=$(cat password-artifact/.env | grep PASSWORD | cut -d'=' -f2)
+          source password-artifact/.env
           echo "Password is: $PASSWORD"
